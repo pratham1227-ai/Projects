@@ -211,19 +211,78 @@ nav {
 }
 
 .hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.hamburger span {
     display: block;
-    width: 25px;
-    height: 3px;
-    background: var(--text-color);
-    margin: 5px 0;
-    transition: var(--transition);
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
 }
 
+.hamburger.active .line {
+    background-color: #fff; /* Example active state for lines */
+}
+
+.nav-links {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333; /* Example background color */
+    z-index: 999; /* Ensure it's on top */
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); /* Slide out of view */
+}
+
+.nav-links.active {
+    display: flex;
+    transform: translateX(0); /* Slide into view */
+}
+
+.nav-links a {
+    color: #fff; /* Example nav link color */
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Hamburger Lines */
+.hamburger .line {
+    width: 30px;
+    height: 3px;
+    background-color: #000;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Rotate lines when active */
+.hamburger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+}
 /* Hero Section */
 .hero {
     height: 100vh;

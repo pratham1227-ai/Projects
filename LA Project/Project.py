@@ -39,7 +39,7 @@ if st.button("📈 Predict Score"):
         predicted_score = float(X_new.dot(theta_best)[0][0])
         
         # Cap the predicted score at 100
-        predicted_score = min(predicted_score, 100.0)
+        predicted_score = max(predicted_score, 100.0)
         
         # Calculate prediction error if actual provided
         error = round(actual_score - predicted_score, 2) if actual_score else None
